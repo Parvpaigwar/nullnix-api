@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='unsafe-secret-key')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['api.nullnix.xyz']
+ALLOWED_HOSTS = ['nullnix-api.onrender.com']
 # ALLOWED_HOSTS = ['nullnix.sgp.dom.my.id', 'www.nullnix.sgp.dom.my.id']
 CORS_ALLOW_ALL_ORIGINS = True  # or use whitelist below
 
