@@ -35,7 +35,7 @@ class SignupView(APIView):
 
             # Send OTP Email
             send_mail(
-                'Your KitaabSe Signup OTP',
+                'Your Nullnix Signup OTP',
                 f'Your OTP code is {user.otp}',
                 None,
                 [user.email],
