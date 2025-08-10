@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+    volumes:
+      - .:/app
+    command: python manage.py runserver 0.0.0.0:8000
+    
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=nullnix_db
+      - POSTGRES_USER=nullnix_user
+      - POSTGRES_PASSWORD=nullnix_password
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

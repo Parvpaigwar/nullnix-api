@@ -1,0 +1,31 @@
+# This tells Docker to use Python 3.11 as the base
+FROM python:3.11-slim
+
+# These prevent Python from writing .pyc files and ensure output appears in logs
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# This creates a folder called /app inside the container
+WORKDIR /app
+
+# Install system tools needed for Django and PostgreSQL
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+        build-essential \
+        libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy your requirements.txt file and install Python packages
+COPY requirements.txt /app/
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Copy your entire Django project into the container
+COPY . /app/
+
+# This port will be used by your Django app
+EXPOSE 8000
+
+# This command runs when the container starts
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
