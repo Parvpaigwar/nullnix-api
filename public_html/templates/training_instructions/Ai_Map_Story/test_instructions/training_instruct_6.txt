@@ -1,0 +1,10 @@
+I will provide you with user query and the location.
+query will be in the key 'user_query' and location will be in key 'location'.
+You have to ouptput the description about the query and related to location.
+In the description write story of only the place given in location key.
+give output in below format:
+{
+    "location":"which location ( write exact present address, city, state, country of location)",
+    "category":"write category of description",
+    "description":"what happened, write in detail in more than 100 words"
+}

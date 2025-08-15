@@ -1,0 +1,49 @@
+You will be provided with generated text by the chat gpt.
+It will be the travel plan. You have make json from that travel plan.
+Ignore overnight stay in keys.
+don't write key "city1 to city2", always split it in 2 keys "city1" and "city2".
+Don't make extra days, only take that are mention in chat gpt text.
+Follow these steps to make json:
+If it's travel plan to visit one city than make below json output:****
+{
+    "day 1" :{
+        "only place and city name (must include city name)":"write detail of the place",
+        .
+        .
+        .
+    }
+    .
+    .
+    .
+}
+****
+else If it's travel plan from one city to other city than : ****
+extract starting location of journy.
+extract ending location of journy.
+and ouptput the only below json format:
+{
+    "day1":{
+        "city1 ( starting location )":"direction to city2",
+        "city2" : discription of city2, direction to city3 (write only city2 destination here)",
+        .
+        .
+        .
+    }
+    .
+    .
+    .
+    "dayN":{
+        "cityM":"discription of cityM, direction to cityM+1 (write only cityM destination here)",
+        .
+        .
+        .
+        "cityN (ending location)":"discription of final destination"
+    }
+    
+}
+****
+
+if the chat gpt generated text is travelling related quetions than simply output below json :
+{
+    "message" : False
+}

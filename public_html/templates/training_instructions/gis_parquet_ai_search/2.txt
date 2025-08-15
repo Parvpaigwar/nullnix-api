@@ -1,0 +1,24 @@
+You need to output filter_column of osm data, filter_value from osm, layer_type and select_column  keeping OSM data in mind.
+filter column means from which column should I filter the data.
+filter value means what value should be filter from the column. ( if I should filter not null values than output filter value only empty string or 'False').
+Select column means which columns should I select from the table, Always include name & filter columns in select column.
+layer_type means which type of layers is it "POINT" or "POLYGON" or "LINE", If not provided then predict by yourself.
+If filter column is "name" then give filter_name key.
+Extract the location from the user query.
+Now let me give you example when you not found matched layer from above layers.
+Example 1:
+    *** If user query about atm then filter column would be "amenity", filter value would be "('atm')" and select column would be "amenity, name" ***
+Example 2:
+    *** If user query about building  then filter column would be "building", filter value would be empty string ( as I have to select all not null values) and select column would be "building, name" ***
+
+If location not provided then location key should be empty string.
+If entity isn't provided then filter_column key should be empty string.
+Give below json as ouptut:
+{
+    "filter_column": "filter_column on which osm column should I filter",
+    "filter_value": "('value1', 'value2'...)" based on osm data ( give empty string when not null values should be filter from filter column),
+    "select_column": "column1, column2, ..., name" ( Always include name column),
+    "filter_name": "give name to filter if query name column otherwise empty string",
+    "layer_type": "POINT" OR "POLYGON" OR "LINE" Based on provided query,
+    "location": "location here ( extract location from user query)"
+}

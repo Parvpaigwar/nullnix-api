@@ -33,14 +33,16 @@ class SignupView(APIView):
             )
             user.save()
 
-            # Send OTP Email
-            send_mail(
-                'Your Nullnix Signup OTP',
-                f'Your OTP code is {user.otp}',
-                None,
-                [user.email],
-                fail_silently=False,
-            )
+            # # Send OTP Email
+            # send_mail(
+            #     'Your Nullnix Signup OTP',
+            #     f'Your OTP code is {user.otp}',
+            #     None,
+            #     [user.email],
+            #     fail_silently=False,
+            # )
+             # 4. Send OTP Email
+            send_otp_email(email, otp, username)
 
             return Response({"detail": "OTP sent to your email."}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

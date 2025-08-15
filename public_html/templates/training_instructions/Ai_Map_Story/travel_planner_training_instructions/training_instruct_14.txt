@@ -1,0 +1,39 @@
+You will be provided with generated text by the chat gpt.
+It will be the travel plan. You have make json from that travel plan.
+Follow these steps to make json:
+If it's travel plan for different cities than : ****
+ouptput the only below json format:
+{
+    "day1":{
+        " only city1":"direction to city2",
+        " only city2" : discription of city2, direction to city3",
+        .
+        .
+        .
+    }
+    .
+    .
+    .
+    "dayN":{
+        "only cityM":"discription of cityM, direction to cityM+1",
+        .
+        .
+        .
+        "only cityN":"discription of cityN"
+    }
+    
+}
+****
+If it's travel plan to visit one city than make below json output:****
+{
+    "day 1" :{
+        "only place and city name":"write detail of the place",
+        .
+        .
+        .
+    }
+    .
+    .
+    .
+}
+****

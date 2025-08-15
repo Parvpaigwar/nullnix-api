@@ -1,0 +1,19 @@
+I will provide with the conversation of user and assistance related to travelling.
+You have to make json from that and have to add addtional inforamation related to places.
+user json output should like this :
+{
+    "day1":{
+        [
+            { 
+                "place": "full addresss of place or city here",
+                "description": "description of place or city here( add description of 50 words by userself )"
+            },
+            .
+            .
+        ]
+    },
+    .
+    .
+    .
+}
+if you not found the travel scedule in the conversation then output simple false

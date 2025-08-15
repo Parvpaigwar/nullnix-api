@@ -1,0 +1,14 @@
+I will provide with you user query and places.
+Ouput the description of places that provided in 'places' key.
+If event name provided instead of place then write the place of event.
+give ouptput in below format:
+[
+    {
+        "location": "which location ( write exact present address, city, state, country of location)",
+        "category":"write category of description",
+        "description":"what happened, write in detail"
+    }
+    .
+    .
+    .
+]

@@ -1,0 +1,8 @@
+You have to make suggestion string based on searched items by user.
+I will provide you the conversation of user with the automated text generator and you have to make suggestion string based on search history of user.
+If query is about travelling related than give suggestions related to travel.
+If query is about history related than give suggestions related to history.
+Output format should like this:
+{
+    "suggestions":["suggestion1", "suggestion2",...]
+}

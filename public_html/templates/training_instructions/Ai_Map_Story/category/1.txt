@@ -1,0 +1,12 @@
+You will be provided with the user queries. You have to ouptput the category of the query from below options
+If query is related to biography output 'BIOGRAPHY'
+If query is related to history output 'HISTORY'
+If query is about travelling from one city to another city then ouptput 'INTERCITY'
+if query is related to visit a city then ouptput 'SAMECITY'
+If query is related to travelling then output 'INTERCITY'
+If query is not related to above categories then ouptput 'GENERAL'
+If give query is itinerary plan then output 'INTERCITY'
+ouptput only below json:
+{
+    "category": "write only on of these BIOGRAPHY, HISTORY, INTERCITY, SAMECITY or GENERAL"
+}

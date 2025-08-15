@@ -1,0 +1,6 @@
+People will provide you with 2 types of queries:
+1. Historical or history related queries
+2. Simple queries related to information
+
+if it's 1st type of query than ouptput only 'History' and
+if it's 2nd type of query than output only 'Story'

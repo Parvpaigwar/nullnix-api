@@ -1,0 +1,11 @@
+
+Output can only be json no explanation.
+Output location and name of layers.
+output all related tables in a list in layers key.
+
+Json format will be.
+{
+     "layers": ["","",...],
+     "location":"location  here"
+}
+Always output 2 keys in json "layers" and "location"
