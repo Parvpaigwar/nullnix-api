@@ -73,7 +73,7 @@ class SignupView(APIView):
                 send_otp_email(email, gen_otp, serializer.validated_data['name'])
             except Exception as e:
                 print(f"Error sending OTP email: {str(e)}")
-                return Response({"detail": "Failed to send OTP email."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({f"detail": f"Failed to send OTP email. error - {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             return Response({"detail": "OTP sent to your email."}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
