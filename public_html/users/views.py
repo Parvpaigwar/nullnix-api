@@ -22,6 +22,10 @@ from rest_framework.response import Response
 import hashlib
 from datetime import datetime
 from users.utils.token_utilis import create_user_token
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 
 def generate_otp():
@@ -33,6 +37,10 @@ def generate_schema_name(userid):
     encoded = hashlib.md5(base.encode()).hexdigest()
     return f"c{userid}{encoded[:8]}"  # Returns format like 'c123412345678'
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class SignupView(APIView):
     def post(self, request):
         serializer = UserSignupSerializer(data=request.data)
@@ -40,42 +48,38 @@ class SignupView(APIView):
             email = serializer.validated_data['email']
             user_exists = users.objects.filter(email=email).exists()
             if user_exists:
-                return Response({"detail": "User already exists. Please login."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"detail": "User already exists. Please login."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
-            
-            gen_otp = generate_otp()
-
-            user = users.objects.create(
-                name=serializer.validated_data['name'],
-                email=email,
-                is_verified=False,
-                otp=gen_otp,
-                country=serializer.validated_data['country'],  # Optional field
-            )
-            user.save()
-                        
-            # Generate schema after user creation to use user_id
-            schema_name = generate_schema_name(user.id)
-            user.user_schema = schema_name
-            user.save()
-
-
-            # # Send OTP Email
-            # send_mail(
-            #     'Your Nullnix Signup OTP',
-            #     f'Your OTP code is {user.otp}',
-            #     None,
-            #     [user.email],
-            #     fail_silently=False,
-            # )
-            # 4. Send OTP Email
             try:
-                send_otp_email(email, gen_otp, serializer.validated_data['name'])
-            except Exception as e:
-                print(f"Error sending OTP email: {str(e)}")
-                return Response({f"detail": f"Failed to send OTP email. error - {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                gen_otp = generate_otp()
 
-            return Response({"detail": "OTP sent to your email."}, status=status.HTTP_201_CREATED)
+                user = users.objects.create(
+                    name=serializer.validated_data['name'],
+                    email=email,
+                    is_verified=False,
+                    otp=gen_otp,
+                    country=serializer.validated_data['country'],
+                )
+                user.save()
+
+                schema_name = generate_schema_name(user.id)
+                user.user_schema = schema_name
+                user.save()
+
+                send_otp_email(email, gen_otp, serializer.validated_data['name'])
+
+                return Response({"detail": "OTP sent to your email."}, status=status.HTTP_201_CREATED)
+
+            except Exception as e:
+                logger.exception("Signup error")  # 👈 full traceback in logs
+                return Response(
+                    {"detail": f"Internal error: {str(e)}"},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
