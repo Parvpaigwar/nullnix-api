@@ -31,6 +31,7 @@ class UserMiddleware(MiddlewareMixin):
         "api/users/signup/", 
         "api/users/verify/",
         "api/users/google-auth/",
+        "api/users/forget-password/",
         "users/handle-invitation/",
         "users/invitation-details/",
         "users/forget-password/",

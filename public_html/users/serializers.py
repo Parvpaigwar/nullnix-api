@@ -25,3 +25,14 @@ class UserSerializer(serializers.ModelSerializer):
             'modified_on',"otp"
         ]
         read_only_fields = ['id', 'created_on', 'modified_on']
+
+
+
+class ForgetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        email = value.lower()
+        # Don't raise error if user doesn't exist for security reasons
+        # Just return the email - the view will handle the logic
+        return email 
